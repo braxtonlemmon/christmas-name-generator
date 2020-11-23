@@ -1,12 +1,23 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import { generate } from '../util/generate';
-import Row from '../components/Row';
-import styled from 'styled-components';
+import Results from '../components/Results';
+import styled, {keyframes} from 'styled-components';
+import { graphql } from 'gatsby';
+import candyCane from '../images/cane.png';
+
+
+const wobble = keyframes`
+  0% { transform: rotate(-30deg)}
+  25% { transform: rotate(0deg)}
+  50% { transform: rotate(30deg)}
+  75% { transform: rotate(0deg)}
+  100% {transform: rotate(-30deg)}
+`;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: baseline;
   align-items: center;
   flex-direction: column;
   position: relative;
@@ -16,7 +27,7 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   border-radius: 8px;
-  position: absolute;
+  /* position: absolute; */
   bottom: 30px;
   border: none;
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
@@ -30,11 +41,29 @@ const Button = styled.button`
   }
 `;
 
+const CandyCaneLeft = styled.img`
+  position: absolute;
+  left: 0px;
+  height: 500px;
+  animation-name: ${wobble};
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+`;
+
+const CandyCaneRight = styled.img`
+  position: absolute;
+  right: 0px;
+  height: 500px;
+  transform: scaleX(-1);
+`;
+
 
 const IndexPage = () => {
   const [showList, setShowList] = useState(false);
   const [pairs, setPairs] = useState([])
   const [timeout, changeTimeout] = useState(1000);
+  console.log(candyCane);
   const handleGenerate = (e) => {
     e.preventDefault();
     let pairs = generate();
@@ -48,20 +77,11 @@ const IndexPage = () => {
   return (
     <Layout>
       <Wrapper>
-
-      <p>Intro</p>
-      <div>mystery box</div>
-      {
-        pairs.map((pair, index) => {
-          let theTimeout = timeout + 1000;
-          // changeTimeout(theTimeout);
-          return (
-            <Row key={`row-${index}`} giver={pair[0]} receiver={pair[1]} timeout={timeout} />
-            )
-          })
-        }
-      <Button onClick={(e) => handleGenerate(e)}>Generate</Button>
-        </Wrapper>
+        <Button onClick={(e) => handleGenerate(e)}>Generate</Button>
+        <Results pairs={pairs} />
+        <CandyCaneLeft src={candyCane} alt="candy cane" />
+        <CandyCaneRight src={candyCane} alt="candy cane" />
+      </Wrapper>
     </Layout>
   )
 }

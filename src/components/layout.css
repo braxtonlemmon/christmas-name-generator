@@ -19,6 +19,7 @@ body {
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
   background: #e29484;
+  font-family: 'Nerko One', cursive;
 }
 article,
 aside,

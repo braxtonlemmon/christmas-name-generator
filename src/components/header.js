@@ -6,17 +6,17 @@ const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `#ca182b`,
-      marginBottom: `1.45rem`,
+      marginBottom: `15px`,
     }}
   >
     <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        padding: `10px`,
       }}
     >
-      <h1 style={{ margin: 0, textAlign: 'center' }}>
+      <h1 style={{ margin: 0, textAlign: 'center', fontFamily: 'Nerko One', fontSize: '3em', fontWeight: 'normal' }}>
         <Link
           to="/"
           style={{
