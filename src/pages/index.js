@@ -9,10 +9,15 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  height: 100%;
+  min-height: 700px;
 `;
 
 const Button = styled.button`
   border-radius: 8px;
+  position: absolute;
+  bottom: 30px;
   border: none;
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
   padding: 20px;
